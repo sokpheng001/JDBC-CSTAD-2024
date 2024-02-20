@@ -11,8 +11,6 @@ import java.util.Properties;
 import static java.lang.StringTemplate.STR;
 
 public class UserRepository {
-    private final Properties properties = new Properties();
-
     public List<User> getAllUsers(){
         List<User> userList = new ArrayList<>();
         LoadingProperties.loadingProperties();
@@ -35,6 +33,7 @@ public class UserRepository {
                 // Handle other columns as needed
                 userList.add(new User(
                         resultSet.getInt("id"),
+                        resultSet.getString("uuid"),
                         resultSet.getString("user_name"),
                         resultSet.getString("email"),
                         resultSet.getString("password"),
@@ -42,15 +41,15 @@ public class UserRepository {
                 ));
             }
         }catch (SQLException sqlDataException){
-            System.out.println("Problem during selecting data from database: " + sqlDataException.getMessage());
+            System.out.println(STR."Problem during selecting data from database: \{sqlDataException.getMessage()}");
         }
         return userList;
     }
     public int insertUser(User user){
         LoadingProperties.loadingProperties();
         //SQL query
-        String sql = " INSERT INTO users (user_name, email, password, is_deleted) " +
-                "Values (?,?,?,?)";
+        String sql = " INSERT INTO users (uuid,user_name, email, password, is_deleted) " +
+                "Values (?,?,?,?,?)";
 
         try(
                 Connection connection = DriverManager.getConnection(
@@ -64,10 +63,11 @@ public class UserRepository {
         ){
             System.out.println("Connected database\n===");
             //insert
-            preparedStatement.setString(1,user.getUserName());
-            preparedStatement.setString(2,user.getEmail());
-            preparedStatement.setString(3,user.getPassword());
-            preparedStatement.setBoolean(4,user.getIsDeleted());
+            preparedStatement.setString(1,user.getUserUuid());
+            preparedStatement.setString(2,user.getUserName());
+            preparedStatement.setString(3,user.getEmail());
+            preparedStatement.setString(4,user.getPassword());
+            preparedStatement.setBoolean(5,user.getIsDeleted());
             return preparedStatement.executeUpdate();
         }catch (SQLException sqlDataException){
             System.out.println("Problem during selecting data from database: " + sqlDataException.getMessage());

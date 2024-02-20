@@ -1,15 +1,14 @@
 package model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class Item {
-    private Integer id;
+    private Integer ItemId;
+    private String ItemUuid;
     private String itemName;
 }

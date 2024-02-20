@@ -1,20 +1,20 @@
 package controller;
 
 import model.User;
-import org.junit.Test;
-import service.Service;
-import service.ServiceImp;
+import service.UserService;
+import service.UserServiceImp;
 
 import java.util.List;
+import java.util.UUID;
 
 public class UserController {
-    private final Service service = new ServiceImp();
+    private final UserService userService = new UserServiceImp();
     public List<User> getAllUsers(){
-        return service.getAllUsers();
+        return userService.getAllUsers();
     }
     public int addUser(){
-        return service.insertUser(
-          new User(1,"Koko","kokok123@gmail.com","12212",false)
+        return userService.insertUser(
+          new User(1, UUID.randomUUID().toString(),"Koko","kokok123@gmail.com","12212",false)
         );
     }
 }

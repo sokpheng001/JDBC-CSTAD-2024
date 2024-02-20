@@ -10,7 +10,8 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class User {
-    private Integer id;
+    private Integer UserId;
+    private String UserUuid;
     private String userName;
     private String email;
     private String password;

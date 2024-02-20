@@ -1,12 +1,11 @@
 package service;
 
-import jdk.javadoc.doclet.Reporter;
 import model.User;
 import repository.UserRepository;
 
 import java.util.List;
 
-public class ServiceImp implements Service{
+public class UserServiceImp implements UserService {
     private final UserRepository repository = new UserRepository();
     @Override
     public List<User> getAllUsers() {
