@@ -57,7 +57,7 @@ public class OrderRepository {
                 ));
             }
         }catch (SQLException sqlException){
-            System.out.println("Problem during select order from database:" + sqlException.getMessage());
+            System.out.println(STR."Problem during select order from database:\{sqlException.getMessage()}");
         }
         return orderList;
     }

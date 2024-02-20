@@ -14,7 +14,7 @@ public class Order {
     private String OrderUuid;
     private Date localDateTime;
     // one ordDER is for one person
-    private User userId;
+    private User user;
     // many to many
-    private List<Item> itemId;
+    private List<Item> items;
 }
