@@ -1,4 +1,4 @@
-package service;
+package model.service;
 
 import model.Order;
 import repository.OrderRepository;

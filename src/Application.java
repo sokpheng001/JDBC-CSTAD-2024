@@ -1,12 +1,9 @@
-import controller.OrderController;
-import controller.UserController;
-import model.Order;
+
+import view.ViewUI;
 
 public class Application {
-    private static final UserController userController = new UserController();
-    private static final OrderController orderController = new OrderController();
+    private static final ViewUI viewUi = new ViewUI();
     public static void main(String[] args) {
-        orderController.getAllOrder().stream().map(Order::getLocalDateTime).forEach(System.out::println);
-
+        viewUi.ui();
     }
 }
